@@ -19172,7 +19172,7 @@
                 "mode": "POI",
                 "fill": "#FBC02D",
                 "fill-opacity": 0.5,
-                "marker-symbol": "logo_event"
+                "marker-symbol": "logo_main"
             },
             "geometry": {
                 "type": "Polygon",

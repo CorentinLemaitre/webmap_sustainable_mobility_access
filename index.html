@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8" />
-		<title>Transfert</title>
-		<meta property="og:title" content="Transfert">
+		<title>Chronographe</title>
+		<meta property="og:title" content="Accès au chronographe">
 		<meta property="og:description" content="Cliquez-ici pour accéder au plan d'accès. Venez à l'innauguration s'engagent pour le territoire et le climat sans polluer.">
 		<meta property="og:url" content="https://corentinlemaitre.github.io/eco-evenement/2018/rencontre_annuelle/open_graph.gif">
 		<meta property="og:type" content="website">
@@ -32,10 +32,7 @@
 		
 		<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.0.0/mapbox-gl-geocoder.min.js'></script>
 		<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.0.0/mapbox-gl-geocoder.css' type='text/css' />
-		<!--	
-			<link rel='stylesheet' href='https://reeve.c-mobilite.fr/Transfert/widget-theme-journey.css' type='text/css' /> 
-		-->
-	
+
 		<link rel='stylesheet' href='widget-theme-journey.css' type='text/css' /> 
 		
 		
@@ -194,29 +191,43 @@
 		
 		map.on('load', function (){
 		
-	map.loadImage('img/bus.png', function(error, image) {
+	map.loadImage('img/bicloo.png', function(error, image) {
 		if (error) throw error;
-		map.addImage('bus', image);
+		map.addImage('bicloo', image);
 	});
-	
-	map.loadImage('img/boat.png', function(error, image) {
-		if (error) throw error;
-		map.addImage('ferry', image);
-	});
-	
+		
 	map.loadImage('img/bicycle_park.png', function(error, image) {
 		if (error) throw error;
 		map.addImage('bicycle', image);
 	});
 	
-	map.loadImage('img/bicloo.png', function(error, image) {
+	/*
+	map.loadImage('img/boat.png', function(error, image) {
 		if (error) throw error;
-		map.addImage('bicloo', image);
+		map.addImage('ferry', image);
+	});
+	*/
+	
+	map.loadImage('img/bus.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('bus', image);
 	});
 	
-	map.loadImage('img/car_park.png', function(error, image) {
+	
+	map.loadImage('img/logo.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('logo_main', image);
+	});
+
+
+	map.loadImage('img/parking.png', function(error, image) {
 		if (error) throw error;
 		map.addImage('car', image);
+	});
+	
+	map.loadImage('img/parking_blue.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('parking', image);
 	});
 	
 	map.loadImage('img/tram.png', function(error, image) {
@@ -224,27 +235,6 @@
 		map.addImage('rail-light', image);
 	});
 	
-	map.loadImage('img/logo_event_small.png', function(error, image) {
-		if (error) throw error;
-		map.addImage('logo_event_small.png', image);
-	});
-	
-	map.loadImage('img/logo_event.png', function(error, image) {
-		if (error) throw error;
-		map.addImage('logo_event', image);
-	});
-	map.loadImage('img/logo_large.png', function(error, image) {
-		if (error) throw error;
-		map.addImage('logo_large', image);
-	});
-	map.loadImage('img/logo_long.png', function(error, image) {
-		if (error) throw error;
-		map.addImage('logo_long', image);
-	});
-	map.loadImage('img/parking1.png', function(error, image) {
-		if (error) throw error;
-		map.addImage('parking', image);
-	});
 	map.loadImage('img/walk.png', function(error, image) {
 		if (error) throw error;
 		map.addImage('walk', image);
@@ -268,7 +258,7 @@
 			}
 		},
 		"layout": {
-			"icon-image": "logo_event",
+			"icon-image": "logo_main",
 			"icon-size": 0.58 // seems to be 0.5 for 50 percent
 		},
 		"paint": {
@@ -538,7 +528,7 @@
 		
 		
 		
-		
+		/*
 		
 		
 		/////// Popup Line --> on hover pour que cela soit plus facile à traiter. Pas de marge de mouvement. Désactivé suite à l'ajout des numéros de ligne de bus.
@@ -595,7 +585,7 @@
 			map.getCanvas().style.cursor = '';
 			popup.remove();
 			});
-			
+		*/
 		
 		
 		
