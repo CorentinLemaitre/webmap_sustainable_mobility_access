@@ -252,20 +252,25 @@
 					"type": "Feature",
 					"geometry": {
 						"type": "Point",
-						"coordinates": [-1.56474943, 47.19191514]
+						"coordinates": [-1.5647959,47.19198883]
 					}
 				}]
 			}
 		},
 		"layout": {
 			"icon-image": "logo_main",
-			"icon-size": 0.5, // seems to be 0.5 for 50 percent
-			"icon-anchor": "bottom"
+			"icon-size": {
+				"base": 1.5,
+				"stops": [[10, 0.3], [14, 0.5]]
+			},
+			"icon-anchor": "bottom",
+			"icon-allow-overlap": true,
+			"icon-offset" : [0,-10]
 		},
 		"paint": {
 			"icon-opacity": {
 				"base": 1,
-				"stops": [[13.5, 1], [14, 0]]
+				"stops": [[14, 1], [15.5, 0.45]]
 			}
 		}
 		});
