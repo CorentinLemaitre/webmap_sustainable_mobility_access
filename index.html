@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Transfert</title>
+		<meta property="og:title" content="Transfert">
+		<meta property="og:description" content="Cliquez-ici pour accéder au plan d'accès. Venez à l'innauguration s'engagent pour le territoire et le climat sans polluer.">
+		<meta property="og:url" content="https://corentinlemaitre.github.io/eco-evenement/2018/rencontre_annuelle/open_graph.gif">
+		<meta property="og:type" content="website">
+		<meta property="og:locale" content="fr_FR">
+		<meta property="og:image" content="https://corentinlemaitre.github.io/eco-evenement/2019/MiN_de_Nantes/open_graph.gif">
+		<meta property="og:site_name" content="Reeve">
+		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+		<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
+		<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+		
+		<style>
+			body { margin:0; padding:0; }
+			#map { position:absolute; top:0; bottom:0; width:100%; }
+			
+		</style>
+		
+		
+		<script src="https://use.fontawesome.com/acc5504c96.js"></script>
+		
+	</head>
+	
+	
+	<body>
+		
+		
+		
+		<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.0.0/mapbox-gl-geocoder.min.js'></script>
+		<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.0.0/mapbox-gl-geocoder.css' type='text/css' />
+		<!--	
+			<link rel='stylesheet' href='https://reeve.c-mobilite.fr/Transfert/widget-theme-journey.css' type='text/css' /> 
+		-->
+		
+		
+		<style>
+			
+			body { margin:0; padding:0;}
+			
+			#map { position:absolute; top:0; bottom:0; width:100%; }
+			
+			.map-overlay-container {
+			position: absolute;
+			width: 100%;
+			top: 0px;
+			left: 0;
+			padding: 10px;
+			z-index: 1;`
+			}
+			
+			.mapboxgl-popup {
+			max-width: 150px;
+			font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+			text-align: center;
+			top: -15px;
+			}
+			.mapboxgl-popup-close-button {
+			display: none;
+			}
+			
+			
+			
+			
+			.buttons {
+			text-align: center;
+			position: absolute;
+			top: 10px;
+			left:10px;
+			display: inline-block;
+			}
+			
+			
+			
+			.button {
+			
+			background: #fff;
+			position: relative;
+			top: 50%;
+			border-radius: 3px;
+			width: 100px;
+			height: 30px;
+			border: 1px solid rgba(0,0,0,0.4);
+			font-family: LeagueSpartan,"Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			text-shadow: 0 -0.5px 0 rgba(0,0,0,.25);
+			text-align: center;
+			border-radius: 3px;
+			font-size: .70em;
+			text-decoration: none;
+			
+			
+			}
+			
+			
+			
+			.button:hover {
+			background-color: #000000;
+			color: #FFFFFF;
+			}
+			
+			#myDIV {
+			z-index: 3;
+			display: none;
+			position: relative;
+			width: 100%;
+			height: 100%;
+			}
+			
+			#myDIV.X {
+			position: relative;
+			top: 5%;
+			left:5px;
+			z-index: 40;
+			border-radius: 50px;
+			background-color: #000000;
+			color: #FFFFFF;
+			width:2%;
+			}
+			#myDIV.X:hover {
+			background: #fff;
+			color: #000;
+			}
+			
+			
+			
+		</style>
+		
+		
+		<div id='map'></div>
+		
+		<div style="margin:10px;position:relative;">
+			
+			
+			
+			<div id="myDIV">
+				<button class="button" id="X" onclick="myFunction()">X</button>
+				<div id="is-WidgetWrapper">  chargement en cours </div>
+			</div>
+		</div>
+		
+		
+		<div class="buttons">
+			<button class="button" id='tog' onclick="myFunction()">Itinéraire</button><br>
+			<button class="button" id='fly_bicloo'>Bicloo</button><br>
+			<button class="button" id='fly_bateau'>Navibus</button><br>
+			<button class="button" id='fly_bus'>Bus Tram</button><br>
+		</div>
+		
+	</div>
+	
+	
+	<script>
+		/* 
+		TODO :
+		Ajouter le bouton pour zoomer sur la ligne de bus qui dessert
+		Logo pour la mairie et la citée radieuse
+		
+		Icone du lieux qui se cache et se montre à partir d'un certains niveau de zoom.
+		Plan indoor.
+		
+		*/
+		
+		mapboxgl.accessToken = 'pk.eyJ1IjoiY29yZW50aW5sZW1haXRyZSIsImEiOiJjajQ0OGxmZ2sxNTVkMnFwbjI2M3RsMTc5In0.35Ah1wy069n6jeaniWxMWg';
+		var map = new mapboxgl.Map({
+		
+		container: 'map',
+		style: 'mapbox://styles/mapbox/streets-v10',
+		center: [-1.56516, 47.20972], // 15.5/47.207363/-1.559553
+		zoom: 11,
+		hash: 1,
+		pitch: 0//pour avoir une vision avec un angle
+		});
+		
+		
+		function myFunction() {
+		var x = document.getElementById("myDIV");
+		if (x.style.display == "block") {
+		x.style.display = "none";
+		} else {
+		x.style.display = "block";
+		}
+		}
+		
+		
+		var zoomtrigger = 14; 
+		
+		map.on('load', function (){
+		
+	map.loadImage('img/bus.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('bus', image);
+	});
+	
+	map.loadImage('img/boat.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('ferry', image);
+	});
+	
+	map.loadImage('img/bicycle_park.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('bicycle', image);
+	});
+	
+	map.loadImage('img/bicloo.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('bicloo', image);
+	});
+	
+	map.loadImage('img/car_park.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('car', image);
+	});
+	
+	map.loadImage('img/tram.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('rail-light', image);
+	});
+	
+	map.loadImage('img/logo_event_small.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('logo_event_small.png', image);
+	});
+	
+	map.loadImage('img/logo_event.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('logo_event', image);
+	});
+	map.loadImage('img/logo_large.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('logo_large', image);
+	});
+	map.loadImage('img/logo_long.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('logo_long', image);
+	});
+	map.loadImage('img/parking1.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('parking', image);
+	});
+	map.loadImage('img/walk.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('walk', image);
+	});	
+	
+	
+	map.addLayer({
+		"id": "logo",
+		"type": "symbol",
+		"source": {
+			"type": "geojson",
+			"data": {
+				"type": "FeatureCollection",
+				"features": [{
+					"type": "Feature",
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-1.56784704, 47.19404675]
+					}
+				}]
+			}
+		},
+		"layout": {
+			"icon-image": "logo_event",
+			"icon-size": 0.58 // seems to be 0.5 for 50 percent
+		},
+		"paint": {
+			"icon-opacity": {
+				"base": 1,
+				"stops": [[13.5, 1], [14, 0]]
+			}
+		}
+		});
+		
+		
+		map.addLayer({
+			'id': 'lines',
+			'type': 'line',
+			'source': {
+				'type': 'geojson',
+				'data': 'map_data.geojson',
+			},
+			'minzoom' : 7,
+			"layout": {
+				"line-join": "round",
+				"line-cap": "round",
+				"line-sort-key": 10,      // ["-",90,['get', 'stroke']] 		// lignes les plus petites en haut.
+			},
+			"paint": {
+				"line-color": ['get', 'stroke'],// peut aussi récupérer des couleurs nommées comme 'red' et aussi sur geojson.io
+				"line-width": {
+					"property": 'stroke-width',// identifie la clé qui est analysé dans le fichier pour chercher la valeure.
+					"base": 1.5,
+					"stops": [
+					[{zoom: 10, value: 1}, 0.25],
+					[{zoom: 10, value: 10}, 2.5],
+					[{zoom: 18, value: 1}, 5],
+					[{zoom: 18, value: 10}, 50]
+					]
+				},
+				"line-opacity": {
+					"base": 1,
+					"stops": [[9, 0], [11, 1]]
+				},
+				"line-dasharray" :
+				[ "case", 
+				['==',["has", 'dash'],true], 
+				['literal',[1.5, 2]],
+				['literal',[1,0]]
+				]
+			},
+			'filter': ["all", ['==', '$type', 'LineString']]	
+			//'filter': ['==', ["has", 'dash'],false]
+			//'filter': ["all", ['==', ["has", 'dash'],false] , ['==', '$type', 'LineString']]
+			
+		}, "road-label-large");
+		
+		
+		/// LAYER : line-label
+		
+		map.addLayer({
+			'id': 'line-label',
+			'type': 'symbol',
+			'source': 'lines',
+			'layout': {
+				'symbol-placement': 'line-center',
+				'text-field': ['get', 'ref'],
+				'text-font': [
+				'Open Sans Bold',
+				'Arial Unicode MS Bold'
+				],
+				"text-size":{
+					"property": 'stroke-width',// identifie la clé qui est analysé dans le fichier pour chercher la valeure.
+					"base": 1.5,
+					"stops": [
+					[{zoom: 12, value: 1}, 10],
+					[{zoom: 12, value: 10}, 15],
+					[{zoom: 18, value: 1}, 20],
+					[{zoom: 18, value: 10}, 35]
+					]
+				},
+				
+				/*						// Style avec logo de bus en plus
+					'text-offset': [1.2,0],
+					'icon-offset': [-1.2,0],
+				'icon-keep-upright' : true,*/
+			},
+			'minzoom' : 12,
+			"paint": {
+				"text-color": ['get', 'stroke'],
+				"text-halo-width": 2.5,
+				"text-halo-color":"white",
+				"text-halo-blur": 0.5,
+				
+				
+				/*										// style avec noms de lignes de bus dans encadréde couleur. Pas de possibilité d'ajouter le logo à la taille 
+					"text-halo-color":['get', 'stroke'], 
+					"icon-halo-color":['get', 'stroke'],
+					"icon-color": ['get', 'stroke'],
+					"icon-halo-width": 100,
+					"icon-halo-color":['get', 'stroke'],
+				*/
+			},
+			"filter": ["all", ['==', '$type', 'LineString']]
+		}, "road-label-large" );
+		
+		
+		
+		//////// LAYER : points 
+		
+		map.addLayer({
+			"id": "points",
+			"type": "symbol",
+			"source": {
+				"type": "geojson",
+				"data": "map_data.geojson",
+			},
+			'minzoom': 13,
+			"layout": {
+				"icon-image": ['get', 'marker-symbol'], // autre possibilité qui était la et marchais :: "{marker-symbol}",
+				"icon-allow-overlap": true,
+				"icon-size": {
+					"base": 1.5,
+					"stops": [[14, 0.26], [17, 1]]
+				}
+			},
+			"paint": {
+				"icon-opacity": {
+					"base": 1,
+					"stops": [[13.5, 0], [14, 1]]
+				}
+			},
+			'filter': ['!=', '$type', 'LineString']
+			//'filter': ['in', '$type', ['literal',['Point','Polygon']]]
+		});
+		
+		
+		
+		map.addLayer({
+			'id': 'polygones',
+			'type': 'fill',
+			'source': {
+				'type': 'geojson',
+				'data': 'map_data.geojson'
+			},
+			'minzoom' : 14,
+			'layout': {},
+			'paint': {
+				'fill-color': ['get', 'fill'],
+				'fill-opacity': 0.3
+			},
+			'filter': ['==', '$type', 'Polygon']
+		},"road-label-large");
+		
+		
+		
+		
+		
+		
+		
+		//////////////////////////////////////////////////  POPUP ONCLICK
+		
+		// Create a popup, but don't add it to the map yet.
+		var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: false
+		});
+		
+		//Popup Points
+		
+		
+		// When a click event occurs on a feature in the polygones layer, open a popup at the
+		// location of the feature, with description HTML from its properties.
+		map.on('click','points', function (e) {
+			var coordinates = e.features[0].geometry.coordinates.slice();
+			var description = e.features[0].properties.name;
+			
+			
+			// Ensure that if the map is zoomed out such that multiple
+			// copies of the feature are visible, the popup appears
+			// over the copy being pointed to.
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+			
+			new mapboxgl.Popup()
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.name)
+			.addTo(map);
+		});
+		
+		// Change the cursor to a pointer when the mouse is over the places layer.
+		map.on('mouseenter','points', function () {
+			map.getCanvas().style.cursor = 'pointer';
+		});
+		
+		// Change it back to a pointer when it leaves.
+		map.on('mouseleave','points', function () {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+		});
+		
+		
+		//Popup sur les label de ligne ref
+		
+		// When a click event occurs on a feature in the polygones layer, open a popup at the
+		// location of the feature, with description HTML from its properties.
+		map.on('click','line-label', function (e) {
+			var coordinates = e.features[0].geometry.coordinates.slice();
+			var description = e.features[0].properties.name;
+			
+			
+			// Ensure that if the map is zoomed out such that multiple
+			// copies of the feature are visible, the popup appears
+			// over the copy being pointed to.
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+			
+			new mapboxgl.Popup()
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.name)
+			.addTo(map);
+		});
+		
+		// Change the cursor to a pointer when the mouse is over the places layer.
+		map.on('mouseenter','line-label', function () {
+			map.getCanvas().style.cursor = 'pointer';
+		});
+		
+		// Change it back to a pointer when it leaves.
+		map.on('mouseleave','line-label', function () {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+		});
+		
+		
+		
+		//Popup Bicloo
+		
+		
+		// When a click event occurs on a feature in the polygones layer, open a popup at the
+		// location of the feature, with description HTML from its properties.
+		map.on('click','bicloo', function (e) {
+			var coordinates = e.features[0].geometry.coordinates.slice();
+			var description = e.features[0].properties.name;
+			
+			
+			// Ensure that if the map is zoomed out such that multiple
+			// copies of the feature are visible, the popup appears
+			// over the copy being pointed to.
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+				coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+			
+			new mapboxgl.Popup()
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.name)
+			.addTo(map);
+		});
+		
+		// Change the cursor to a pointer when the mouse is over the places layer.
+		map.on('mouseenter','bicloo', function () {
+			map.getCanvas().style.cursor = 'pointer';
+		});
+		
+		// Change it back to a pointer when it leaves.
+		map.on('mouseleave','bicloo', function () {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+		});
+		
+		
+		//Popup Polygones
+		
+		/*
+			// When a click event occurs on a feature in the polygones layer, open a popup at the
+			// location of the feature, with description HTML from its properties.
+			map.on('click','polygones', function (e) {
+			var coordinates = e.features[0].geometry.coordinates.slice();
+			var description = e.features[0].properties.name;
+			
+			// Ensure that if the map is zoomed out such that multiple
+			// copies of the feature are visible, the popup appears
+			// over the copy being pointed to.
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+			
+			new mapboxgl.Popup()
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.name)
+			.addTo(map);
+			});
+			
+			// Change the cursor to a pointer when the mouse is over the places layer.
+			map.on('mouseenter','polygones', function () {
+			map.getCanvas().style.cursor = 'pointer';
+			});
+			
+			// Change it back to a pointer when it leaves.
+			map.on('mouseleave','polygones', function () {
+			map.getCanvas().style.cursor = '';
+			});
+		*/
+		
+		
+		
+		
+		
+		
+		/////// Popup Line --> on hover pour que cela soit plus facile à traiter. Pas de marge de mouvement. Désactivé suite à l'ajout des numéros de ligne de bus.
+		
+		/*
+			// Create a popup, but don't add it to the map yet.
+			var popup = new mapboxgl.Popup({
+			closeButton: false,
+			closeOnClick: false
+			});
+			
+			map.on('mouseenter', 'normal-lines', function(e) {
+			// Change the cursor style as a UI indicator.
+			map.getCanvas().style.cursor = 'pointer';
+			var coordinates = e.features[0].geometry.coordinates.slice();
+			var description = e.features[0].properties.name;
+			
+			while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+			coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+			}
+			
+			// Populate the popup and set its coordinates
+			popup
+			.setLngLat(e.lngLat)
+			.setHTML(e.features[0].properties.name)
+			.addTo(map);
+			});
+			
+			map.on('mouseleave', 'normal-lines', function() {
+			map.getCanvas().style.cursor = '';
+			popup.remove();
+			});
+			
+			
+		*/	
+		
+		
+		
+		
+		/////////////////////  FLYTO
+		
+		
+		///BUS
+		
+		document.getElementById('fly_bus').addEventListener('click', function (e) {
+			changeFunction1();
+			flyFunction1();
+		});
+		
+		
+		
+		var arrival = [-1.55243,47.20267];
+		var index = 1;
+		var flyzoom = 11.6;
+		var flypitch = 0;
+		var flybearing = 0;
+		
+		
+		
+		function changeFunction1(){
+			if (index != 1) {
+				arrival = [-1.55243,47.20267];
+				flyzoom = 11.6;
+				flypitch = 0;
+				flybearing = 0;
+				index = 1;
+				}else{
+				arrival = [-1.569323, 47.19432];
+				flyzoom = 15;
+				flypitch = 0;
+				flybearing = 0;
+				index = 0;
+			}
+		};
+		function flyFunction1(){
+			map.flyTo({
+				center: arrival, //first
+				zoom:flyzoom,
+				pitch: flypitch,
+				bearing: flybearing
+			});
+		};
+		
+		
+		///BATEAU
+		
+		document.getElementById('fly_bateau').addEventListener('click', function (e) {
+			changeFunction2();
+			flyFunction2();
+		});
+		
+		
+		
+		var arrival = [-1.57244,47.19919]; // navibus + chemin piéton
+		var index = 1;
+		var flyzoom = 13.52;
+		var flypitch = 0;
+		var flybearing = 0;
+		
+		
+		
+		function changeFunction2(){
+			if (index !=2) {
+				arrival = [-1.57244,47.19919];
+				flyzoom = 13.52;
+				flypitch = 0;
+				flybearing = 0;
+				index = 2;
+				}else{
+				arrival = [-1.569323, 47.19432];
+				flyzoom = 15;
+				flypitch = 0;
+				flybearing = 0;
+				index = 0;
+			}
+		};
+		function flyFunction2(){
+			map.flyTo({
+				center: arrival, //first
+				zoom:flyzoom,
+				pitch: flypitch,
+				bearing: flybearing
+			});
+		};
+		
+		///BICLOO
+		
+		document.getElementById('fly_bicloo').addEventListener('click', function (e) {
+			changeFunction3();
+			flyFunction3();
+		});
+		
+		
+		
+		var arrival = [-1.57764,47.19689]; 
+		var index = 1;
+		var flyzoom = 13.5;
+		var flypitch = 0;
+		var flybearing = 0;
+		
+		
+		function flyFunction3(){
+			map.flyTo({
+				center: arrival, //first
+				zoom:flyzoom,
+				pitch: flypitch,
+				bearing: flybearing
+			});
+		};
+		function changeFunction3(){
+			if (index != 3) {
+				arrival = [-1.57764,47.19689];
+				flyzoom = 13.5;
+				flypitch = 0;
+				flybearing = 0;
+				index = 3;
+				}else{
+				arrival = [-1.569323, 47.19432];
+				flyzoom = 15;
+				flypitch = 0;
+				flybearing = 0;
+				index = 0;
+			}
+		};
+		
+		
+		
+		
+		
+	});
+	
+	
+	
+	
+</script>
+
+
+
+
+<script type="text/javascript"> (function(){
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src= 'https://www.destineo.fr/fr/widget/place?isfid=null&redirection=true&isfv=&istid=STOPAREA%7C1350&istv=Seil%2CREZE&token=WWW.TRANSFERT.CO&target=blank'
+script.async = true;document.getElementsByTagName('body')[0].appendChild(script);})();
+</script>
+
+
+
+
+
+</body>
+</html>
