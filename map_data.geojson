@@ -17235,7 +17235,8 @@
                 "mode": "Bus",
                 "dash": "yes",
 				"stroke-width": 2,
-                "stroke": "#0288D1"
+                "stroke": "#0288D1",
+				"ref": "5 min"
             },
             "geometry": {
                 "type": "LineString",
@@ -17350,7 +17351,8 @@
                 "mode": "Bus",
                 "dash": "yes",
 				"stroke-width": 2,
-                "stroke": "#0288D1"
+                "stroke": "#0288D1",
+				"ref": "2 min"
             },
             "geometry": {
                 "type": "LineString",
@@ -17471,7 +17473,8 @@
                 "mode": "TC",
                 "dash": "yes",
                 "stroke": "#097138",
-				"stroke-width": 2
+				"stroke-width": 2,
+				"ref": "15 min"
             },
             "geometry": {
                 "type": "LineString",
@@ -17721,7 +17724,8 @@
                 "name": "<b>Accès piéton parking</b> <br> 400 m de marche",
                 "dash": "true",
                 "stroke-width": 2,
-                "stroke": "#F57C00"
+                "stroke": "#F57C00",
+				"ref": "400m"
             },
             "geometry": {
                 "type": "LineString",
@@ -17827,11 +17831,12 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "<b>Trajet piéton Arrêt Gare de Pont-Rousseau</b> <br> Envion 1,3 km à pied au travers du parc.",
+                "name": "<b>Trajet piéton Pont-Rousseau</b> <br> Envion 1,3 km à pied au travers du parc.",
                 "mode": "TC",
                 "dash": "yes",
                 "stroke": "#097138",
-				"stroke-width": 2
+				"stroke-width": 2,
+				"ref": "18 min"
             },
             "geometry": {
                 "type": "LineString",
@@ -18204,7 +18209,8 @@
                 "mode": "TC",
                 "dash": "yes",
                 "stroke": "#097138",
-				"stroke-width": 2
+				"stroke-width": 2,
+				"ref": "15 min"
             },
             "geometry": {
                 "type": "LineString",
@@ -18470,7 +18476,7 @@
                 "mode": "POI",
                 "fill": "#FBC02D",
                 "fill-opacity": 0.5,
-                "marker-symbol": "logo_main"
+                "marker-symbol": "no"
             },
             "geometry": {
                 "type": "Polygon",
