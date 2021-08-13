@@ -622,22 +622,22 @@ map.on('load', function (){
 		},
 		'navibus': {
 			bearing: 0,
-			center: [-1.57006,47.1947], 
-			zoom: 13.24,
+			center: [-1.57633,47.19666], 
+			zoom: 14,
 			filter: "2",
 			pitch: 0
 		},
 		'tram': {
 			bearing: 0,
-			center: [-1.55243,47.20267],
-			zoom: 11.6,
+			center: [-1.55996,47.1895], 
+			zoom: 14.43,
 			filter: "3",
 			pitch: 0
 		},
 		'voiture': {
 			bearing: 0,
-			center: [-1.55243,47.20267],
-			zoom: 11.6,
+			center: [-1.567063,47.192204],
+			zoom: 16.2,
 			filter: "97",
 			pitch: 0
 		},
@@ -683,7 +683,30 @@ map.on('load', function (){
 			filterFunction();
 		});
 		
-		///BICLOO
+		///TRAM
+		
+		document.getElementById('fly_tram').addEventListener('click', function (e) {
+			if (activeRule === "tram"){
+				activeRule = "base";
+				}else{
+				activeRule = "tram";
+			}
+			filterFunction();
+		});
+		
+		///VOITURE
+		
+		document.getElementById('fly_car').addEventListener('click', function (e) {
+			if (activeRule === "voiture"){
+				activeRule = "base";
+				}else{
+				activeRule = "voiture";
+			}
+			filterFunction();
+		});
+		
+		
+		///VELO
 		
 		document.getElementById('fly_bike').addEventListener('click', function (e) {
 			if (activeRule === "velo"){
@@ -694,6 +717,8 @@ map.on('load', function (){
 			filterFunction();
 		});
 		
+		
+	
 		
 		
 	});
