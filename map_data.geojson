@@ -10536,7 +10536,8 @@
                 "name": "<strong>ligne 30</strong><br>Trentemoult - Savarières <br><a target=_blank href=\"https://destineo.fr/fr/horaires/TAN/Bus/ligne/30/direction/OUTWARD/88\">Horraires prochains passages</a>",
                 "stroke-width": 3,
                 "stroke": "#FFED00",
-				"ref":"30"
+				"ref":"30",
+				"mode":"Bus navibus"
             },
             "geometry": {
                 "type": "LineString",
@@ -17474,7 +17475,7 @@
             "type": "Feature",
             "properties": {
                 "name": "<b>Trajet piéton Arrêt Espace Diderot </b> <br> Envion 1,2 km",
-                "mode": "tram",
+                "mode": "tram velo",
                 "dash": "yes",
                 "stroke": "#097138",
 				"stroke-width": 2,
@@ -17730,7 +17731,7 @@
                 "stroke-width": 2,
                 "stroke": "#F57C00",
 				"ref": "400m",
-				"mode": "velo"
+				"mode": "voiture"
             },
             "geometry": {
                 "type": "LineString",
@@ -17836,7 +17837,7 @@
             "type": "Feature",
             "properties": {
                 "name": "<b>Trajet piéton Pont-Rousseau</b> <br> Envion 1,3 km à pied au travers du parc.",
-                "mode": "TC",
+                "mode": "tram velo",
                 "dash": "yes",
                 "stroke": "#097138",
 				"stroke-width": 2,
