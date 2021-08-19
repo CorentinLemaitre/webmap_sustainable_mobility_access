@@ -13,6 +13,9 @@
 		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 		<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
 		<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap" rel="stylesheet">
 		
 		<style>
 			body { margin:0; padding:0; }
@@ -76,31 +79,29 @@
 			
 			.button {
 			
-			background: #fff;
+			background: #F9E175;
 			position: relative;
 			top: 50%;
 			border-radius: 3px;
 			width: 100px;
 			height: 30px;
 			border: 1px solid rgba(0,0,0,0.4);
-			font-family: LeagueSpartan,"Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-family: 'Alegreya Sans',sans-serif;
 			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 0.04em;
-			text-shadow: 0 -0.5px 0 rgba(0,0,0,.25);
 			text-align: center;
-			border-radius: 3px;
+			border-radius: 0px;
 			font-size: .70em;
 			text-decoration: none;
-			
 			
 			}
 			
 			
 			
 			.button:hover {
-			background-color: #000000;
-			color: #FFFFFF;
+			background-color: #263850;
+			color: #F9E175;
 			}
 			
 			#myDIV {
@@ -685,7 +686,7 @@ map.on('load', function (){
 		
 		///TRAM
 		
-		document.getElementById('fly_tram').addEventListener('click', function (e) {
+document.getElementById('fly_tram').addEventListener('click', function (e) {
 			if (activeRule === "tram"){
 				activeRule = "base";
 				}else{
