@@ -658,73 +658,57 @@ map.on('load', function (){
 			
 		function filterFunction() {
 			console.info (activeRule);
-			map.flyTo(rules_index[activeRule]);
 			map.setFilter('lines', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
 			map.setFilter('points', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
 			map.setFilter('line-label', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
 		};
 
 		
-		
-		///BUS
-		
-		document.getElementById('fly_bus').addEventListener('click', function (e) {
-			if (activeRule === "Bus"){
+		function button_effect(a) {
+			if (activeRule === arguments[0]){
 				activeRule = "start";
+				//filterFunction();
 				}else{
-				activeRule = "Bus";
+				activeRule = arguments[0];
+				map.flyTo(rules_index[activeRule]);
+				filterFunction();
 			}
-			filterFunction();
-		});
+
+		};
 		
+
+		document.getElementById('fly_bus').addEventListener('click',function () { 
+			button_effect ("Bus");
+			});
+
 		///BATEAU
 		
-		document.getElementById('fly_bateau').addEventListener('click', function (e) {
-			if (activeRule === "navibus"){
-				activeRule = "start";
-				}else{
-				activeRule = "navibus";
-			}
-			filterFunction();
+		document.getElementById('fly_bateau').addEventListener('click', function () {
+			button_effect ("navibus");
 		});
 		
 		///TRAM
 		
-document.getElementById('fly_tram').addEventListener('click', function (e) {
-			if (activeRule === "tram"){
-				activeRule = "start";
-				}else{
-				activeRule = "tram";
-			}
-			filterFunction();
+		document.getElementById('fly_tram').addEventListener('click', function () {
+			button_effect ("tram");
 		});
 		
 		///VOITURE
 		
-		document.getElementById('fly_car').addEventListener('click', function (e) {
-			if (activeRule === "voiture"){
-				activeRule = "start";
-				}else{
-				activeRule = "voiture";
-			}
-			filterFunction();
+		document.getElementById('fly_car').addEventListener('click', function () {
+			button_effect ("voiture");
 		});
 		
 		
 		///VELO
 		
-		document.getElementById('fly_bike').addEventListener('click', function (e) {
-			if (activeRule === "velo"){
-				activeRule = "start";
-				}else{
-				activeRule = "velo";
-			}
-			filterFunction();
+		document.getElementById('fly_bike').addEventListener('click', function () {
+			button_effect ("velo");
 		});
 		
 		// POINTEUR 
 		
-		map.on('click','logo_pointeur', function (e) {
+		map.on('click','logo_pointeur', function () {
 			if (activeRule === "zoom"){
 				activeRule = "start";
 				}else{
