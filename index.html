@@ -659,9 +659,9 @@ map.on('load', function (){
 		function filterFunction() {
 			console.info (activeRule);
 			map.flyTo(rules_index[activeRule]);
-			map.setFilter('lines', ["any" , ['in', activeRule, ['get', 'mode']], ['==', ['has', 'mode'], false]]);
-			map.setFilter('points', ["any" , ['in', activeRule, ['get', 'mode']], ['==', ['has', 'mode'], false]]);
-			map.setFilter('line-label', ["any" , ['in', activeRule, ['get', 'mode']], ['==', ['has', 'mode'], false]]);
+			map.setFilter('lines', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
+			map.setFilter('points', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
+			map.setFilter('line-label', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
 		};
 
 		
