@@ -168,13 +168,13 @@
 		
 		*/
 		
-		var activeRule = "base";
+		var activeRule = "start";
 	
 	const rules_index = {
-		'base': {
+		'start': {
 			bearing: 0,
-			center:  [-1.569323, 47.19432],
-			zoom: 15,
+			center:  [-1.5797, 47.2044],
+			zoom: 11.4,
 			filter: "30",
 			pitch: 0
 		},
@@ -212,6 +212,13 @@
 			zoom: 14,
 			filter: "3",
 			pitch: 0
+		}, 
+		'zoom': {
+			bearing: 0,
+			center: [-1.565216,47.19141],
+			zoom: 15.5,
+			filter: "3",
+			pitch: 0
 		}
 	};
 		
@@ -220,9 +227,9 @@
 		var map = new mapboxgl.Map({
 		container: 'map',
 		style: 'mapbox://styles/mapbox/streets-v10',
-		center: rules_index["base"].center, // 15.5/47.207363/-1.559553
-		zoom: rules_index["base"].zoom,
-		hash: 1,
+		center: rules_index["start"].center, // 15.5/47.207363/-1.559553
+		zoom: rules_index["start"].zoom,
+		hash: 1,	// TODO  mettre à 1 pour developpement
 		pitch: 0//pour avoir une vision avec un angle
 		});
 		
@@ -264,9 +271,9 @@ map.on('load', function (){
 	});
 	
 	
-	map.loadImage('img/logo.png', function(error, image) {
+	map.loadImage('img/logo_pointeur.png', function(error, image) {
 		if (error) throw error;
-		map.addImage('logo_main', image);
+		map.addImage('logo_pointeur', image);
 	});
 	
 	
@@ -292,7 +299,7 @@ map.on('load', function (){
 	
 	
 	map.addLayer({
-		"id": "logo",
+		"id": "logo_pointeur",
 		"type": "symbol",
 		"source": {
 			"type": "geojson",
@@ -308,7 +315,7 @@ map.on('load', function (){
 			}
 		},
 		"layout": {
-			"icon-image": "logo_main",
+			"icon-image": "logo_pointeur",
 			"icon-size": {
 				"base": 1.5,
 				"stops": [[10, 0.3], [14, 0.5]]
@@ -648,13 +655,9 @@ map.on('load', function (){
 	
 	/////////////////////  FLYTO
 	
-		
-	// var filter1 = map.getFilter('lines');
-
 			
 		function filterFunction() {
 			console.info (activeRule);
-			console.info (rules_index[activeRule]);
 			map.flyTo(rules_index[activeRule]);
 			map.setFilter('lines', ["any" , ['in', activeRule, ['get', 'mode']], ['==', ['has', 'mode'], false]]);
 			map.setFilter('points', ["any" , ['in', activeRule, ['get', 'mode']], ['==', ['has', 'mode'], false]]);
@@ -667,7 +670,7 @@ map.on('load', function (){
 		
 		document.getElementById('fly_bus').addEventListener('click', function (e) {
 			if (activeRule === "Bus"){
-				activeRule = "base";
+				activeRule = "start";
 				}else{
 				activeRule = "Bus";
 			}
@@ -678,7 +681,7 @@ map.on('load', function (){
 		
 		document.getElementById('fly_bateau').addEventListener('click', function (e) {
 			if (activeRule === "navibus"){
-				activeRule = "base";
+				activeRule = "start";
 				}else{
 				activeRule = "navibus";
 			}
@@ -689,7 +692,7 @@ map.on('load', function (){
 		
 document.getElementById('fly_tram').addEventListener('click', function (e) {
 			if (activeRule === "tram"){
-				activeRule = "base";
+				activeRule = "start";
 				}else{
 				activeRule = "tram";
 			}
@@ -700,7 +703,7 @@ document.getElementById('fly_tram').addEventListener('click', function (e) {
 		
 		document.getElementById('fly_car').addEventListener('click', function (e) {
 			if (activeRule === "voiture"){
-				activeRule = "base";
+				activeRule = "start";
 				}else{
 				activeRule = "voiture";
 			}
@@ -712,15 +715,23 @@ document.getElementById('fly_tram').addEventListener('click', function (e) {
 		
 		document.getElementById('fly_bike').addEventListener('click', function (e) {
 			if (activeRule === "velo"){
-				activeRule = "base";
+				activeRule = "start";
 				}else{
 				activeRule = "velo";
 			}
 			filterFunction();
 		});
 		
+		// POINTEUR 
 		
-	
+		map.on('click','logo_pointeur', function (e) {
+			if (activeRule === "zoom"){
+				activeRule = "start";
+				}else{
+				activeRule = "zoom";
+			}
+			map.flyTo(rules_index[activeRule]);
+		});	
 		
 		
 	});
