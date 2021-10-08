@@ -168,13 +168,60 @@
 		
 		*/
 		
+		var activeRule = "base";
+	
+	const rules_index = {
+		'base': {
+			bearing: 0,
+			center:  [-1.569323, 47.19432],
+			zoom: 15,
+			filter: "30",
+			pitch: 0
+		},
+		'Bus': {
+			bearing: 0,
+			center: [-1.56651,47.19132],
+			zoom: 14.5,
+			filter: "1",
+			pitch: 0
+		},
+		'navibus': {
+			bearing: 0,
+			center: [-1.57633,47.19666], 
+			zoom: 14,
+			filter: "2",
+			pitch: 0
+		},
+		'tram': {
+			bearing: 0,
+			center: [-1.55996,47.1895], 
+			zoom: 14.43,
+			filter: "3",
+			pitch: 0
+		},
+		'voiture': {
+			bearing: 0,
+			center: [-1.567063,47.192204],
+			zoom: 16.2,
+			filter: "97",
+			pitch: 0
+		},
+		'velo': {
+			bearing: 0,
+			center: [-1.55958,47.19084],
+			zoom: 14,
+			filter: "3",
+			pitch: 0
+		}
+	};
+		
+		
 		mapboxgl.accessToken = 'pk.eyJ1IjoiY29yZW50aW5sZW1haXRyZSIsImEiOiJjajQ0OGxmZ2sxNTVkMnFwbjI2M3RsMTc5In0.35Ah1wy069n6jeaniWxMWg';
 		var map = new mapboxgl.Map({
-		
 		container: 'map',
 		style: 'mapbox://styles/mapbox/streets-v10',
-		center: [-1.56516, 47.20972], // 15.5/47.207363/-1.559553
-		zoom: 11,
+		center: rules_index["base"].center, // 15.5/47.207363/-1.559553
+		zoom: rules_index["base"].zoom,
 		hash: 1,
 		pitch: 0//pour avoir une vision avec un angle
 		});
@@ -278,6 +325,36 @@ map.on('load', function (){
 		}
 	});
 	
+		
+	//////// LAYER : points 
+	
+	map.addLayer({
+		"id": "points",
+		"type": "symbol",
+		"source": {
+			"type": "geojson",
+			"data": "map_data.geojson",
+		},
+		'minzoom': 13,
+		"layout": {
+			"icon-image": ['get', 'marker-symbol'], // autre possibilité qui était la et marchais :: "{marker-symbol}",
+			"icon-allow-overlap": true,
+			"icon-size": {
+				"base": 1.5,
+				"stops": [[14, 0.3], [17, 1]]
+			},
+			"icon-anchor": "bottom"
+		},
+		"paint": {
+			"icon-opacity": {
+				"base": 1,
+				"stops": [[13.5, 0], [14, 1]]
+			}
+		},
+		'filter': ['!=', '$type', 'LineString']
+		//'filter': ['in', '$type', ['literal',['Point','Polygon']]]
+	}, "logo");
+
 	
 	map.addLayer({
 		'id': 'lines',
@@ -322,7 +399,7 @@ map.on('load', function (){
 	}, "road-label-large");
 	
 	
-	/// LAYER : line-label
+			/// LAYER : line-label
 	
 	map.addLayer({
 		'id': 'line-label',
@@ -368,38 +445,7 @@ map.on('load', function (){
 			*/
 		},
 		"filter": ["all", ['==', '$type', 'LineString']]
-	}, "road-label-large" );
-	
-	
-	
-	//////// LAYER : points 
-	
-	map.addLayer({
-		"id": "points",
-		"type": "symbol",
-		"source": {
-			"type": "geojson",
-			"data": "map_data.geojson",
-		},
-		'minzoom': 13,
-		"layout": {
-			"icon-image": ['get', 'marker-symbol'], // autre possibilité qui était la et marchais :: "{marker-symbol}",
-			"icon-allow-overlap": true,
-			"icon-size": {
-				"base": 1.5,
-				"stops": [[14, 0.3], [17, 1]]
-			},
-			"icon-anchor": "bottom"
-		},
-		"paint": {
-			"icon-opacity": {
-				"base": 1,
-				"stops": [[13.5, 0], [14, 1]]
-			}
-		},
-		'filter': ['!=', '$type', 'LineString']
-		//'filter': ['in', '$type', ['literal',['Point','Polygon']]]
-	});
+	}, "points" );
 	
 	
 	
@@ -603,57 +649,12 @@ map.on('load', function (){
 	/////////////////////  FLYTO
 	
 		
-	var activeRule = "base";
-	var filter1 = map.getFilter('lines');
-	
-	const rules_index = {
-		'base': {
-			bearing: 0,
-			center:  [-1.569323, 47.19432],
-			zoom: 15,
-			filter: "30",
-			pitch: 0
-		},
-		'Bus': {
-			bearing: 0,
-			center: [-1.56651,47.19132],
-			zoom: 14.5,
-			filter: "1",
-			pitch: 0
-		},
-		'navibus': {
-			bearing: 0,
-			center: [-1.57633,47.19666], 
-			zoom: 14,
-			filter: "2",
-			pitch: 0
-		},
-		'tram': {
-			bearing: 0,
-			center: [-1.55996,47.1895], 
-			zoom: 14.43,
-			filter: "3",
-			pitch: 0
-		},
-		'voiture': {
-			bearing: 0,
-			center: [-1.567063,47.192204],
-			zoom: 16.2,
-			filter: "97",
-			pitch: 0
-		},
-		'velo': {
-			bearing: 0,
-			center: [-1.55958,47.19084],
-			zoom: 14,
-			filter: "3",
-			pitch: 0
-		}
-	};
-	
+	// var filter1 = map.getFilter('lines');
+
 			
 		function filterFunction() {
 			console.info (activeRule);
+			console.info (rules_index[activeRule]);
 			map.flyTo(rules_index[activeRule]);
 			map.setFilter('lines', ["any" , ['in', activeRule, ['get', 'mode']], ['==', ['has', 'mode'], false]]);
 			map.setFilter('points', ["any" , ['in', activeRule, ['get', 'mode']], ['==', ['has', 'mode'], false]]);
