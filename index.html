@@ -152,6 +152,7 @@
 			<button class="button" id='fly_tram'>Tram</button><br>
 			<button class="button" id='fly_car'>Voiture</button><br>
 			<button class="button" id='fly_bike'>Vélo</button><br>
+			<button class="button" id='poi_button'>à visiter</button><br>
 		</div>
 		
 	</div>
@@ -213,6 +214,13 @@
 			filter: "3",
 			pitch: 0
 		}, 
+		'POI': {
+			bearing: 0,
+			center: [-1.57034,47.19312],
+			zoom: 14.5,
+			filter: "3",
+			pitch: 0
+		},
 		'zoom': {
 			bearing: 0,
 			center: [-1.565216,47.19141],
@@ -292,9 +300,9 @@ map.on('load', function (){
 		map.addImage('rail-light', image);
 	});
 	
-	map.loadImage('img/walk.png', function(error, image) {
+	map.loadImage('img/poi.png', function(error, image) {
 		if (error) throw error;
-		map.addImage('walk', image);
+		map.addImage('POI', image);
 	});	
 	
 	
@@ -704,6 +712,12 @@ map.on('load', function (){
 		
 		document.getElementById('fly_bike').addEventListener('click', function () {
 			button_effect ("velo");
+		});
+		
+		///POI
+		
+		document.getElementById('poi_button').addEventListener('click', function () {
+			button_effect ("POI");
 		});
 		
 		// POINTEUR 

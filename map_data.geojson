@@ -17445,8 +17445,9 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Hôtel de Ville de Rezé\n",
-                "marker-symbol": "POI"
+                "name": "Hôtel de Ville de Rezé",
+                "marker-symbol": "POI", 
+				"class": "POI"
             },
             "geometry": {
                 "type": "Point",
@@ -18661,6 +18662,66 @@
                     47.19296420000
                 ]
             }
-        }
+        }, 
+		{
+      "type": "Feature",
+      "properties": {
+        "marker-symbol": "POI",
+        "name": "<b>Transfert & Co</b>",
+        "class": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5678369998931885,
+          47.19399941562173
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-symbol": "POI",
+        "name": "<b>La maison radieuse</b>",
+        "class": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5682661533355713,
+          47.188647963766904
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "<b>Trentemoult</b>",
+        "class": "POI",
+        "marker-symbol": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5822887420654297,
+          47.19423270914945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "<b>Le hangar à bananes</b>",
+        "class": "POI",
+        "marker-symbol": "POI"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -1.5731477737426758,
+          47.20082282757802
+        ]
+      }
+    }
     ]
 }
