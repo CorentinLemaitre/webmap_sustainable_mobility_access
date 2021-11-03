@@ -18667,7 +18667,7 @@
       "type": "Feature",
       "properties": {
         "marker-symbol": "POI",
-        "name": "<b>Transfert & Co</b>",
+        "name": "<b>Transfert & Co</b><br>moins de 15 minutes à pied depuis le chronographe",
         "class": "POI"
       },
       "geometry": {
@@ -18682,7 +18682,7 @@
       "type": "Feature",
       "properties": {
         "marker-symbol": "POI",
-        "name": "<b>La maison radieuse</b>",
+        "name": "<b>La maison radieuse</b><br>6 minutes à pied depuis le chronographe",
         "class": "POI"
       },
       "geometry": {
@@ -18696,7 +18696,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "<b>Trentemoult</b>",
+        "name": "<b>Trentemoult</b><br>ancien village de pécheur sur le bord de la Loire<br>environ 20 minutes à pied depuis le chronographe",
         "class": "POI",
         "marker-symbol": "POI"
       },
@@ -18711,7 +18711,7 @@
     {
       "type": "Feature",
       "properties": {
-        "name": "<b>Le hangar à bananes</b>",
+        "name": "<b>La grue titan</b><br>au pied de la grue se trouve le hangar à Bananes",
         "class": "POI",
         "marker-symbol": "POI"
       },
