@@ -4,12 +4,7 @@
 		<meta charset="UTF-8" />
 		<title>Chronographe</title>
 		<meta property="og:title" content="Accès au chronographe">
-		<meta property="og:description" content="Cliquez-ici pour accéder au plan d'accès. Venez à l'innauguration s'engagent pour le territoire et le climat sans polluer.">
-		<meta property="og:url" content="https://corentinlemaitre.github.io/eco-evenement/2018/rencontre_annuelle/open_graph.gif">
-		<meta property="og:type" content="website">
-		<meta property="og:locale" content="fr_FR">
-		<meta property="og:image" content="https://corentinlemaitre.github.io/eco-evenement/2019/MiN_de_Nantes/open_graph.gif">
-		<meta property="og:site_name" content="Reeve">
+		<meta property="og:description" content="Cliquez-ici pour accéder au plan d'accès.">
 		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 		<script src='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js'></script>
 		<link href='https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css' rel='stylesheet' />
@@ -209,8 +204,8 @@
 		},
 		'velo': {
 			bearing: 0,
-			center: [-1.55958,47.19084],
-			zoom: 14,
+			center: [-1.565587,47.190968],
+			zoom: 15.5,
 			filter: "3",
 			pitch: 0
 		}, 
@@ -263,9 +258,13 @@ map.on('load', function (){
 	
 	map.loadImage('img/bicycle_park.png', function(error, image) {
 		if (error) throw error;
-		map.addImage('bicycle', image);
+		map.addImage('bicycle-park', image);
 	});
 	
+	map.loadImage('img/bicycle.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('bicycle', image);
+	});															   
 	/*
 		map.loadImage('img/boat.png', function(error, image) {
 		if (error) throw error;
@@ -297,12 +296,17 @@ map.on('load', function (){
 	
 	map.loadImage('img/tram.png', function(error, image) {
 		if (error) throw error;
-		map.addImage('rail-light', image);
+		map.addImage('tram', image);
 	});
 	
 	map.loadImage('img/poi.png', function(error, image) {
 		if (error) throw error;
 		map.addImage('POI', image);
+	});
+	
+	map.loadImage('img/walk.png', function(error, image) {
+		if (error) throw error;
+		map.addImage('walk', image);
 	});	
 	
 	
@@ -350,7 +354,7 @@ map.on('load', function (){
 			"type": "geojson",
 			"data": "map_data.geojson",
 		},
-		'minzoom': 13,
+		//'minzoom': 13,
 		"layout": {
 			"icon-image": ['get', 'marker-symbol'], // autre possibilité qui était la et marchais :: "{marker-symbol}",
 			"icon-allow-overlap": true,
@@ -366,7 +370,7 @@ map.on('load', function (){
 				"stops": [[13.5, 0], [14, 1]]
 			}
 		},
-		'filter': ['!=', '$type', 'LineString']
+		'filter': ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]
 		//'filter': ['in', '$type', ['literal',['Point','Polygon']]]
 	}, "logo_pointeur");
 
@@ -407,7 +411,7 @@ map.on('load', function (){
 			['literal',[1,0]]
 			]
 		},
-		'filter': ["all", ['==', '$type', 'LineString']]	
+		'filter': ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]	
 		//'filter': ['==', ["has", 'dash'],false]
 		//'filter': ["all", ['==', ["has", 'dash'],false] , ['==', '$type', 'LineString']]
 		
@@ -421,27 +425,44 @@ map.on('load', function (){
 		'type': 'symbol',
 		'source': 'lines',
 		'layout': {
+			'icon-image': ['get', 'line-symbol'],   
 			'symbol-placement': 'line-center',
 			'text-field': ['get', 'ref'],
 			'text-font': [
-			'Open Sans Bold',
-			'Arial Unicode MS Bold'
+				'Open Sans Bold',
+				'Arial Unicode MS Bold'
 			],
+			'text-allow-overlap': true,
+			'icon-allow-overlap': true,					
+			'icon-ignore-placement': true,
+			'text-ignore-placement': true,
 			"text-size":{
 				"property": 'stroke-width',// identifie la clé qui est analysé dans le fichier pour chercher la valeure.
 				"base": 1.5,
 				"stops": [
-				[{zoom: 12, value: 1}, 10],
-				[{zoom: 12, value: 10}, 15],
-				[{zoom: 18, value: 1}, 20],
-				[{zoom: 18, value: 10}, 35]
+					[{zoom: 12, value: 1}, 10],
+					[{zoom: 12, value: 10}, 15],
+					[{zoom: 18, value: 1}, 20],
+					[{zoom: 18, value: 10}, 35]
+				]
+			},
+			"icon-size":{
+				"property": 'stroke-width',// identifie la clé qui est analysé dans le fichier pour chercher la valeure.
+				"base": 1.5,
+				"stops": [
+					[{zoom: 12, value: 1}, 0.28],
+					[{zoom: 12, value: 10}, 0.42],
+					[{zoom: 18, value: 1}, 0.57],
+					[{zoom: 18, value: 10}, 1]
 				]
 			},
 			
-			/*						// Style avec logo de bus en plus
-				'text-offset': [1.2,0],
-				'icon-offset': [-1.2,0],
-			'icon-keep-upright' : true,*/
+			// Style avec logo de bus en plus
+			//'text-offset': [1.2,0],
+			//'icon-offset': [-1.2,0],
+	 		'text-anchor' : "left",
+			'icon-anchor' : "right",
+			'icon-keep-upright' : true
 		},
 		'minzoom' : 12,
 		"paint": {
@@ -459,7 +480,7 @@ map.on('load', function (){
 				"icon-halo-color":['get', 'stroke'],
 			*/
 		},
-		"filter": ["all", ['==', '$type', 'LineString']]
+		"filter": ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]
 	}, "points" );
 	
 	
@@ -665,7 +686,7 @@ map.on('load', function (){
 	
 			
 		function filterFunction() {
-			console.info (activeRule);
+			
 			map.setFilter('lines', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
 			map.setFilter('points', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
 			map.setFilter('line-label', ["any" , ['in', activeRule, ['get', 'class']], ['==', ['has', 'class'], false]]);
@@ -673,6 +694,7 @@ map.on('load', function (){
 
 		
 		function button_effect(a) {
+			console.info (activeRule);
 			if (activeRule === arguments[0]){
 				activeRule = "start";
 				//filterFunction();

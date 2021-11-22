@@ -68,7 +68,7 @@
       "properties": {                
                 "marker-symbol": "bicloo",
                 "name": "<strong>Station bicloo</strong><br>Mairie de Rezé - Capacité 21 places<br><a target=_blank href=\"https://www.bicloo.nantesmetropole.fr/fr/mapping\"> Cliquez ici pour voir la disponibilité</a>",
-				"class": "velo"
+				"class": "velo start"
 	  },
       "geometry": {
         "type": "Point",
@@ -81,14 +81,14 @@
 		{
       "type": "Feature",
       "properties": {
-         "marker-symbol": "ferry",
+         "line-symbol": "ferry",
                 "stroke": "#2AAAB6",
                 "stroke-opacity": 1,
                 "stroke-width": 3,
 				"dash":"true",
                 "name": "<strong>Navibus N2</strong></br>Hangar à Bananes à Bas Chantenay<br><a target=_blank href=\"https://destineo.fr/fr/horaires/TAN/Ferry/ligne/N2/direction/OUTWARD/7089\">Horraires prochains passages</a>",
 				"ref":"N2",
-                "class": "navibus"
+                "class": "navibus start"
       },
       "geometry": {
         "type": "LineString",
@@ -10534,10 +10534,11 @@
             "type": "Feature",
             "properties": {
                 "name": "<strong>ligne 30</strong><br>Trentemoult - Savarières <br><a target=_blank href=\"https://destineo.fr/fr/horaires/TAN/Bus/ligne/30/direction/OUTWARD/88\">Horraires prochains passages</a>",
-                "stroke-width": 3,
+                "stroke-width": 3.5,
                 "stroke": "#FFED00",
 				"ref":"30",
-				"class":"Bus navibus"
+				"class":"Bus navibus start", 
+				"line-symbol":"no_bus"
             },
             "geometry": {
                 "type": "LineString",
@@ -14929,10 +14930,11 @@
             "type": "Feature",
             "properties": {
                 "name": "<b>Ligne 97</b><br>Trentemoult - Vertou <br><a target=_blank href=\"https://destineo.fr/fr/horaires/TAN/Bus/ligne/97/direction/RETURN/121\">Horraires</a>",
-                "stroke-width": 3,
+                "stroke-width": 3.5,
                 "stroke": "#BEABD0",
 				"ref":"97",
-                "class": "Bus"
+                "class": "Bus start", 
+				"line-symbol":"no_bus"
             },
             "geometry": {
                 "type": "LineString",
@@ -17242,7 +17244,8 @@
                 "dash": "yes",
 				"stroke-width": 2,
                 "stroke": "#0288D1",
-				"ref": "5 min"
+				"ref": "5 min", 
+				"line-symbol":"walk"
             },
             "geometry": {
                 "type": "LineString",
@@ -17358,7 +17361,8 @@
                 "dash": "yes",
 				"stroke-width": 2,
                 "stroke": "#0288D1",
-				"ref": "2 min"
+				"ref": "2 min", 
+				"line-symbol":"walk"
             },
             "geometry": {
                 "type": "LineString",
@@ -17462,7 +17466,7 @@
             "properties": {
                 "name": "Ligne 3, Arrêt Château de Rezé\n",
                 "class": "tram",
-                "marker-symbol": "rail-light"
+                "marker-symbol": "tram"
             },
             "geometry": {
                 "type": "Point",
@@ -17472,15 +17476,16 @@
                 ]
             }
         },
-        {
+		{
             "type": "Feature",
             "properties": {
                 "name": "<b>Trajet piéton Arrêt Espace Diderot </b> <br> Envion 1,2 km",
-                "class": "tram velo",
+                "class": "tram",
                 "dash": "yes",
                 "stroke": "#097138",
 				"stroke-width": 2,
-				"ref": "15 min"
+				"ref": "15 min", 
+				"line-symbol":"walk"
             },
             "geometry": {
                 "type": "LineString",
@@ -17727,12 +17732,195 @@
         {
             "type": "Feature",
             "properties": {
+                "name": "<b>Trajet piéton Station bicloo  </b> <br> Envion 500 m, 7 minutes à pied",
+                "class": "velo",
+                "dash": "yes",
+                "stroke": "#097138",
+				"stroke-width": 2,
+				"ref": "7 min", 
+				"line-symbol":"walk"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        -1.56743470000,
+                        47.18890320000
+                    ],
+                    [
+                        -1.56801640000,
+                        47.18954250000
+                    ],
+                    [
+                        -1.56810720000,
+                        47.18966230000
+                    ],
+                    [
+                        -1.56821650000,
+                        47.18982180000
+                    ],
+                    [
+                        -1.56819770000,
+                        47.18990700000
+                    ],
+                    [
+                        -1.56815620000,
+                        47.18997220000
+                    ],
+                    [
+                        -1.56808370000,
+                        47.19000860000
+                    ],
+                    [
+                        -1.56789460000,
+                        47.19005450000
+                    ],
+                    [
+                        -1.56558120000,
+                        47.19044890000
+                    ],
+                    [
+                        -1.56560470000,
+                        47.19051810000
+                    ],
+                    [
+                        -1.56550480000,
+                        47.19054910000
+                    ],
+                    [
+                        -1.56542100000,
+                        47.19061790000
+                    ],
+                    [
+                        -1.56539490000,
+                        47.19067760000
+                    ],
+                    [
+                        -1.56529160000,
+                        47.19070580000
+                    ],
+                    [
+                        -1.56528560000,
+                        47.19073520000
+                    ],
+                    [
+                        -1.56537210000,
+                        47.19085120000
+                    ],
+                    [
+                        -1.56542840000,
+                        47.19089270000
+                    ],
+                    [
+                        -1.56555710000,
+                        47.19100120000
+                    ],
+                    [
+                        -1.56568490000,
+                        47.19106380000
+                    ],
+                    [
+                        -1.56581260000,
+                        47.19113200000
+                    ],
+                    [
+                        -1.56585210000,
+                        47.19135340000
+                    ],
+                    [
+                        -1.56587220000,
+                        47.19152250000
+                    ],
+                    [
+                        -1.56582260000,
+                        47.19155480000
+                    ],
+                    [
+                        -1.56559470000,
+                        47.19157440000
+                    ],
+                    [
+                        -1.56495230000,
+                        47.19160530000
+                    ]
+                ]
+            }
+        },
+		{
+			"type": "Feature",
+			"properties": {
+				"name": "<b>Trajet piéton Station bicloo  </b> <br> Envion 500 m, 5 minutes à pied",
+                "class": "velo",
+                "dash": "yes",
+                "stroke": "#097138",
+				"stroke-width": 2,
+				"ref": "5 min", 
+				"line-symbol":"walk"
+				},
+			"geometry": {
+				"type": "LineString",
+				"coordinates": [
+          [
+            -1.5649133920669556,
+            47.19160445244632
+          ],
+          [
+            -1.565873622894287,
+            47.1915497716598
+          ],
+          [
+            -1.565878987312317,
+            47.19162632474515
+          ],
+          [
+            -1.5662866830825806,
+            47.1915497716598
+          ],
+          [
+            -1.5664798021316528,
+            47.191542480883996
+          ],
+          [
+            -1.5671128034591673,
+            47.19145863689038
+          ],
+          [
+            -1.5674293041229248,
+            47.19141853754226
+          ],
+          [
+            -1.567826271057129,
+            47.19140031055583
+          ],
+          [
+            -1.5683090686798096,
+            47.191451346102085
+          ],
+          [
+            -1.5689259767532349,
+            47.191378438163866
+          ],
+          [
+            -1.5690761804580686,
+            47.1909482792897
+          ],
+          [
+            -1.5691673755645752,
+            47.190897243259684
+          ]
+        ]
+      }
+    },
+        {
+            "type": "Feature",
+            "properties": {
                 "name": "<b>Accès piéton parking</b> <br> 400 m de marche",
                 "dash": "true",
                 "stroke-width": 2,
                 "stroke": "#F57C00",
-				"ref": "400m",
-				"class": "voiture"
+				"ref": "3 min",
+				"class": "voiture", 
+				"line-symbol":"walk"
             },
             "geometry": {
                 "type": "LineString",
@@ -17823,26 +18011,13 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Maison Radieuse\n",
-                "marker-symbol": "POI2"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    -1.56831980000,
-                    47.18872820000
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
                 "name": "<b>Trajet piéton Pont-Rousseau</b> <br> Envion 1,3 km à pied au travers du parc.",
-                "class": "tram velo",
+                "class": "tram",
                 "dash": "yes",
                 "stroke": "#097138",
 				"stroke-width": 2,
-				"ref": "18 min"
+				"ref": "18 min",
+				"line-symbol":"walk"
             },
             "geometry": {
                 "type": "LineString",
@@ -18123,7 +18298,7 @@
             "properties": {
                 "name": "<strong>Station bicloo</strong><br>Gare Pont-Rousseau 102<br><a target=_blank href=\"https://www.bicloo.nantesmetropole.fr/fr/mapping\">Cliquez ici pour voir la disponibilité</a>",
                 "marker-symbol": "bicloo",
-                "class": "velo"
+                "class": "velo start"
             },
             "geometry": {
                 "type": "Point",
@@ -18137,7 +18312,7 @@
             "type": "Feature",
             "properties": {
                 "name": "<b>Arrêt Clos Bonnet (97)</b><br><a target=_blank href=\"https://destineo.fr/fr/horaires/ligne/121/direction/RETURN/arret/Clos-Bonnet/103183\">Horraires 97 vers Trentemoult</a> <br><a target=_blank href=\"https://destineo.fr/fr/horaires/ligne/121/direction/OUTWARD/arret/Clos-Bonnet/103182\">Horraires 97 vers Vertou</a>",
-                "class": "Bus",
+                "class": "Bus start",
                 "marker-symbol": "bus"
             },
             "geometry": {
@@ -18152,7 +18327,7 @@
             "type": "Feature",
             "properties": {
                 "name": "<b>Arrêt Le Corbusier (30 et 97)</b> <br><a target=_blank href=\"https://destineo.fr/fr/horaires/ligne/88/direction/RETURN/arret/Le-Corbusier/103983\">Horraires 30 vers Trentemoult</a> <br><a target=_blank href=\"https://destineo.fr/fr/horaires/ligne/88/direction/OUTWARD/arret/Le-Corbusier/103982\">Horraires 30 vers Joliverie</a>",
-                "class": "Bus navibus",
+                "class": "Bus navibus start",
                 "marker-symbol": "bus"
             },
             "geometry": {
@@ -18168,7 +18343,7 @@
             "properties": {
                 "name": "<b>Parking vélo</b> <br> Capacité total 18 vélos réparties aux entrées du batiment",
                 "class": "velo",
-                "marker-symbol": "bicycle"
+                "marker-symbol": "bicycle-park"
             },
             "geometry": {
                 "type": "Point",
@@ -18197,7 +18372,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Ligne 3, Arrêt Espace Diderot\n",
-                "marker-symbol": "rail-light",
+                "marker-symbol": "tram",
                 "class": "tram"
             },
             "geometry": {
@@ -18216,7 +18391,8 @@
                 "dash": "yes",
                 "stroke": "#097138",
 				"stroke-width": 2,
-				"ref": "15 min"
+				"ref": "15 min", 
+				"line-symbol":"walk"
             },
             "geometry": {
                 "type": "LineString",
@@ -18452,7 +18628,7 @@
             "properties": {
                 "name": "<strong>Station bicloo</strong><br>Pôle social Marion Cahour - Capacité 15<br><a target=_blank href=\"https://www.bicloo.nantesmetropole.fr/fr/mapping\">Cliquez ici pour voir la disponibilité</a>",
                 "marker-symbol": "bicloo",
-				"class": "velo"
+				"class": "velo start"
             },
             "geometry": {
                 "type": "Point",
@@ -18484,7 +18660,7 @@
                 "fill": "#FBC02D",
                 "fill-opacity": 0.5,
                 "marker-symbol": "no", 
-				"class":"no"
+				"class":"no start"
             },
             "geometry": {
                 "type": "Polygon",
@@ -18653,7 +18829,7 @@
             "type": "Feature",
             "properties": {
                 "name": "Ligne 2, Arrêt Gare de Pont-Rousseau\n",
-                "marker-symbol": "rail-light"
+                "marker-symbol": "tram"
             },
             "geometry": {
                 "type": "Point",
