@@ -1,5 +1,7 @@
 # Plan d'accès interactif
 
+Accès à la carte exemple : https://corentinlemaitre.github.io/webmap_sustainable_mobility_access/
+
 ## Objectif
 
 Un plan facile à réutiliser pour valoriser les accès à un lieu ou à un événement.
